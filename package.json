@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "lint": "eslint src/",
+    "lint": "eslint ./",
+    "lint-fix": "eslint --fix ./",
     "test": "jest --coverage",
     "watch": "node_modules/.bin/jest --coverage --watchAll"
   },
