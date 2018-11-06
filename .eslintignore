@@ -1,4 +1,5 @@
 /coverage/**
 /__tests__/**
+/src/serviceWorker.js
 test.js
 
