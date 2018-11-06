@@ -7,3 +7,11 @@ test('Adds 2 + 2 to equal 4', () => {
   const expectedResult = 4;
   expect(functions.add(num1, num2)).toBe(expectedResult);
 });
+
+test('Subtracts 1 from 2 to equal 1', () => {
+  expect.assertions(1);
+  const num1 = 2;
+  const num2 = 1;
+  const expectedResult = 1;
+  expect(functions.subtract(num1, num2)).toBe(expectedResult);
+});
