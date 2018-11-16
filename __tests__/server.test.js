@@ -11,12 +11,13 @@ afterAll(async () => {
 });
 
 describe('routing tests', () => {
-  expect.assertions(2);
   test('get home route GET /', async () => {
+    expect.assertions(1);
     const response = await request(server).get('/');
     expect(response.status).toEqual(200);
   });
   test('get playlist route GET /playlists', async () => {
+    expect.assertions(1);
     const response = await request(server).get('/playlists');
     expect(response.status).toEqual(200);
   });
