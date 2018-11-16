@@ -1,13 +1,11 @@
 const Koa = require('koa');
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
-
 const app = new Koa();
-app.use(bodyParser());
 const router = new Router();
+const port = process.env.PORT || 8080;
 
-const port = 8080;
-
+app.use(bodyParser());
 app.use( async(ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', '*');
   ctx.set('content-type', 'application/json');

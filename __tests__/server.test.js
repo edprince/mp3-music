@@ -1,5 +1,6 @@
 const server = require('../server/server.js');
 const request = require('supertest');
+process.env.PORT = 5050;
 
 beforeAll(async () => {
   console.log('Running server tests');
