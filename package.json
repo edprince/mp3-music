@@ -21,7 +21,8 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-react": "react-scripts start",
+    "start": "node server/server.js",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "lint": "eslint ./",
