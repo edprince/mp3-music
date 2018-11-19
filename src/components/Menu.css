@@ -1,0 +1,37 @@
+.navbar {
+  background: #212121;
+}
+.navbar-menu:not(.is-active) a {
+  color: white;
+}
+
+.navbar-menu a {
+  color: whitesmoke;
+}
+
+.navbar-menu {
+  background: #212121;
+}
+
+.navbar-brand a {
+  font-weight: bold;
+  color: white;
+}
+
+
+a.navbar-item:hover {
+  background: rgba(0, 0, 0, .05);
+}
+
+.burger {
+  color: white;
+  background: none;
+  border: none;
+}
+
+.navbar button:focus {
+  outline: none;
+}
+
+
+

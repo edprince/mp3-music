@@ -1,4 +1,16 @@
 .App {
+  background-color: #282c34;
+  height: 100vh;
+}
+
+.content * {
+  color: whitesmoke !important;
+}
+
+.content {
+  padding-top: 1em;
+  width: 60%;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -20,6 +32,20 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.content h1 {
+  color: whitesmoke;
+}
+
+.content input {
+  background: #212121;
+  border: 0;
+  color: whitesmoke;
+}
+
+.content input::placeholder {
+  color: grey;
 }
 
 @keyframes App-logo-spin {
