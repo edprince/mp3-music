@@ -3,4 +3,4 @@ module.exports = {
     command: 'npm run start-react',
     port: 3000
   }
-}
+};
