@@ -29,7 +29,7 @@ beforeAll( async() => {
 // })
 
 describe('Login Form', () => {
-  test.skip('clicking register takes user to register page', async done => {
+  test('clicking register takes user to register page', async done => {
     await page.goto('http://localhost:3000/login', { waitUntil: 'domcontentloaded' });
     await page.click('#register-btn');
     await page.waitFor(1000);

@@ -1,20 +1,11 @@
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const salt = bcrypt.genSaltSync(saltRounds);
 
-exports.hash = string => {
-  if (string === '') return false;
-  if (typeof string !== 'string') return false;
-  return bcrypt.hashSync(string, salt);
-};
-
-/*
-exports.hash = string => {
-  bcrypt.hash(string, saltRounds, (err, hash) => {
-    console.log(hash);
-    if (err) return false;
-    return hash;
+exports.hashPassword = async(string) => new Promise((resolve, reject) => {
+  if (string === '') reject(false);
+  if (typeof string !== 'string') reject(false);
+  bcrypt.hash(string, saltRounds, (hash) => {
+    resolve(hash);
   });
-};
-*/
+});
 

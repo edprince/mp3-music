@@ -1,3 +1,8 @@
 const hasher = require('./modules/hash.js');
 
-console.log(hasher.hash('hello'));
+hasher.hashPassword({}).then(hash => {
+  console.log(hash);
+}).catch(err => {
+  console.log(err);
+});
+
