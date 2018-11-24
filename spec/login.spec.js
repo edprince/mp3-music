@@ -28,15 +28,15 @@ beforeAll( async() => {
 //   browser.close()
 // })
 
-describe('Shopping List', () => {
-  test('can add a single item', async done => {
-    //await page.waitFor(1000);
-    //await page.tracing.start({path: 'trace.json',screenshots: true});
-    await page.goto('http://localhost:3000/', { waitUntil: 'domcontentloaded' });
-    const title = await page.title();
-    expect(title).toBe('React App');
-    //await page.tracing.stop()
+describe('Login Form', () => {
+  test.skip('clicking register takes user to register page', async done => {
+    await page.goto('http://localhost:3000/login', { waitUntil: 'domcontentloaded' });
+    await page.click('#register-btn');
+    await page.waitFor(1000);
+    expect(page.url()).toBe('http://localhost:3000/register');
     await browser.close();
     done();
   }, timeout);
+
 });
+

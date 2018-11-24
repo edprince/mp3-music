@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "bulma": "^0.7.2",
     "koa": "^2.6.1",
     "koa-bodyparser": "^4.2.1",
@@ -33,7 +34,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint ./",
     "lint-fix": "eslint --fix ./",
-    "test": "jest --coverage",
+    "test": "jest --coverage --detectOpenHandles",
     "test-watch": "jest --coverage --watchAll"
   },
   "eslintConfig": {

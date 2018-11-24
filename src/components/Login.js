@@ -23,7 +23,7 @@ class Login extends Component {
           </p>
           <p className="control">or</p>
           <p className="control">
-            <a href='/register' className="button is-dark">
+            <a href="/register" id="register-btn" className="button is-dark">
               Register
             </a>
           </p>
