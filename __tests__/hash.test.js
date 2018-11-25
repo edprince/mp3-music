@@ -1,15 +1,18 @@
 const hasher = require('../modules/hash.js');
 
 describe('get hashes', () => {
+  /*
+  expect.assertions(2);
   test('get hashed pass', async () => {
     await hasher.hashPassword('hello').then(hash => {
       expect(hash).not.toBe(false);
+      expect(hash).not.toBe(undefined);
     }).catch(err => {
-      console.log(err);
+      expect(err).toBe(undefined);
     });
 
     hasher.hashPassword('').then(hash => {
-      console.log(hash);
+      expect(hash).toBe(undefined);
     }).catch(err => {
       expect(err).not.toBe(undefined);
     });
@@ -19,10 +22,13 @@ describe('get hashes', () => {
     }).catch(err => {
       expect(err).toBe(false);
     });
-    /*
-    expect(hasher.hashPassword('hello')).not.toBe(false);
-    expect(hasher.hashPassword('')).toBe(false);
-    expect(hasher.hashPassword(1)).toBe(false);
-    */
+  });
+  */
+
+  test('other hash', () => {
+    hasher.hash('hello', (err, hash) => {
+      expect(hash).not.toBe(undefined);
+      expect(hash).not.toBe(false);
+    });
   });
 });

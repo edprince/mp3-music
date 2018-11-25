@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+/*
 exports.hashPassword = async(string) => new Promise((resolve, reject) => {
   if (string === '') reject(false);
   if (typeof string !== 'string') reject(false);
@@ -8,4 +9,9 @@ exports.hashPassword = async(string) => new Promise((resolve, reject) => {
     resolve(hash);
   });
 });
+*/
+
+exports.hash = (string, callback) => {
+  bcrypt.hash(string, saltRounds, callback);
+};
 

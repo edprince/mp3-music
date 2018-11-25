@@ -10,6 +10,7 @@
 # # EXPOSE 8080
 # CMD [ "npm", "start" ]
 
+# Need mongo shell ^3.0.0 for mlab compatibility
 FROM node:11.1.0
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

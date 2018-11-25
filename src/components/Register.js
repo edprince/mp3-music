@@ -1,28 +1,41 @@
 import React, { Component } from 'react'; //eslint-disable-line no-unused-vars
+import * as Request from '../modules/request.js';
 
 class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.register = this.register.bind(this);
+  }
+
+  register() {
+    //Get user details and make request
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    //Make request with user details
+    Request.register({email, password}).then(response => {
+      console.log('User created: ', response.message);
+    }).catch(err => {
+      console.error('Error: ', err);
+    });
+  }
+
   render() {
     return (
       <div>
         <h1>Register</h1>
         <div className='field'>
           <div className='control'>
-            <input className='input' type='email' placeholder='Email'/>
+            <input id='email' className='input' type='email' placeholder='Email'/>
           </div>
         </div>
         <div className='field'>
           <div className='control'>
-            <input className='input' type='password' placeholder='Password'/>
-          </div>
-        </div>
-        <div className='field'>
-          <div className='control'>
-            <input className='input' type='password' placeholder='Re-type Password'/>
+            <input id='password' className='input' type='password' placeholder='Password'/>
           </div>
         </div>
         <div className="field is-grouped">
           <p className="control">
-            <button className="button is-primary">
+            <button onClick={this.register} className="button is-primary">
               Register
             </button>
           </p>
