@@ -10,6 +10,7 @@ const dbName = 'princee3-music';
 exports.registerUser = async(user, db) => {
   console.log('Registering user');
   const hashedPassword = await hasher.hash(user.password);
+  console.log(hashedPassword);
   const result = await db.collection('users').insertOne({
     email: user.email,
     pass: hashedPassword,

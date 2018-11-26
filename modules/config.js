@@ -1,2 +1,2 @@
 exports.credentials = {
-}
+};
