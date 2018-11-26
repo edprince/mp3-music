@@ -67,6 +67,15 @@ describe('routing tests', () => {
     expect(response.status).toBe(status.INTERNAL_SERVER_ERROR);
   });
 
+  test('POST /login with good email bad password', async() => {
+    const response = await request(server).post('/login')
+      .send({
+        email: user.email,
+        password: 'THIS-IS-A-BAD-PASSWORD'
+      });
+    expect(response.status).toBe(status.BAD_REQUEST);
+  });
+
   test('GET /login', async () => {
     const response = await request(server).get('/login');
     expect(response.status).toBe(status.OK);

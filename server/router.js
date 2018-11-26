@@ -2,6 +2,7 @@ const Router = require('koa-router');
 const status = require('http-status-codes');
 const db = require('../modules/db.js');
 const validate = require('../modules/validate.js');
+const hasher = require('../modules/hash.js');
 
 const app = new Router();
 
@@ -24,13 +25,13 @@ app.post('/login', async(ctx) => {
   }
   const user = ctx.request.body;
   //Get user record from db
-  const dbUser = await db.checkUser(user, ctx.state.db);
+  const dbUser = await db.checkUserExists(user, ctx.state.db);
   if (dbUser.length > 0) {
-    ctx.response.body = dbUser;
+    const passwordMatch = await hasher.comparePassword(dbUser[0].password, user.password);
+    passwordMatch ? ctx.response.body = dbUser : ctx.status = status.BAD_REQUEST;
   } else {
     ctx.status = status.BAD_REQUEST;
   }
-  //ctx.status = status.OK;
 });
 
 app.post('/register', async(ctx) => {

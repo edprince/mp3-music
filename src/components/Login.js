@@ -12,6 +12,7 @@ class Login extends Component {
     const password = document.getElementById('password').value;
     Request.login({email, password}).then(response => {
       console.log('Logged in');
+      window.location.href='/';
     }).catch(err => {
       console.log('Error logging in: ', err);
     });
@@ -33,7 +34,7 @@ class Login extends Component {
         </div>
         <div className="field is-grouped">
           <p className="control">
-            <button onClick={this.loginRequest} className="button is-primary">
+            <button id='login-btn' onClick={this.loginRequest} className="button is-primary">
               Login
             </button>
           </p>

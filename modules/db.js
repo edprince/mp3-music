@@ -9,20 +9,20 @@ const dbName = 'princee3-music';
  */
 exports.registerUser = async(user, db) => {
   //Check for existing users
-  const existingUser = await exports.checkUser(user, db);
+  const existingUser = await exports.checkUserExists(user, db);
   if (existingUser.length > 0) {
     throw new Error('Already exists');
   };
   const hashedPassword = await hasher.hash(user.password);
   const result = await db.collection('users').insertOne({
     email: user.email,
-    pass: hashedPassword,
+    password: hashedPassword,
     admin: true
   });
   return result;
 };
 
-exports.checkUser = async(user, db) => {
+exports.checkUserExists = async(user, db) => {
   const dbUser = await db.collection('users').find({email: user.email}).toArray();
   return dbUser;
 };
