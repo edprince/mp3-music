@@ -4,7 +4,7 @@ const request = require('supertest');
 const status = require('http-status-codes');
 const faker = require('faker');
 const PORT = 8080;
-const user = {email: faker.internet.email(), password: 'pass'}
+const user = {email: faker.internet.email(), password: 'pass'};
 let server;
 
 
@@ -33,25 +33,6 @@ describe('routing tests', () => {
     expect(response.type).toEqual("application/json");
   });
 
-  test('GET /login', async () => {
-    const response = await request(server).get('/login');
-    expect(response.status).toBe(status.OK);
-  });
-
-  test('POST /login', async () => {
-    const response = await request(server).post('/login');
-    expect(response.status).toBe(status.BAD_REQUEST);
-  });
-
-  /*
-  test('POST /login', async () => {
-    const response = await request(server)
-      .post('/login')
-      .send(user);
-    expect(response.status).toBe(status.OK);
-  });
-  */
-
   test('POST /register', async () => {
     const response = await request(server).post('/register');
     expect(response.status).toBe(status.BAD_REQUEST);
@@ -61,27 +42,44 @@ describe('routing tests', () => {
     const response = await request(server)
       .post('/register')
       .send({
-          email: 'ed@gmail.com'
-      })
-      expect(response.status).toBe(status.BAD_REQUEST);
+          email: faker.internet.email()
+      });
+    expect(response.status).toBe(status.BAD_REQUEST);
   });
 
   test('POST /register with bogus email', async () => {
     const response = await request(server)
       .post('/register')
       .send({
-        email: 'ed',
+        email: faker.name.findName(),
         password: 'pass'
-      })
+      });
     expect(response.status).toBe(status.BAD_REQUEST);
   });
 
-  /*
   test('POST /register with good details', async () => {
-    const response = await request(server)
-      .post('/register')
-      .send(user)
+    const response = await request(server).post('/register').send(user);
+    expect(response.status).toBe(status.OK);
+  });
+
+  test('POST /register again with same details', async() => {
+    const response = await request(server).post('/register').send(user);
+    expect(response.status).toBe(status.INTERNAL_SERVER_ERROR);
+  });
+
+  test('GET /login', async () => {
+    const response = await request(server).get('/login');
+    expect(response.status).toBe(status.OK);
+  });
+
+  test('POST /login send empty object', async () => {
+    const response = await request(server).post('/login').send({});
     expect(response.status).toBe(status.BAD_REQUEST);
   });
-  */
+
+  test('POST /login valid user details', async () => {
+    const response = await request(server).post('/login').send(user);
+    expect(response.status).toBe(status.OK);
+  });
+
 });

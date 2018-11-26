@@ -24,6 +24,7 @@ exports.registerUser = async(user, db) => {
 
 exports.checkUser = async(user, db) => {
   const dbUser = await db.collection('users').find({email: user.email}).toArray();
+  console.log(dbUser);
   return dbUser;
 };
 
