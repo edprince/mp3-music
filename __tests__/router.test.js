@@ -1,14 +1,15 @@
 const server = require('../server/server.js');
 const router = require('../server/router.js');
 const request = require('supertest');
-process.env.PORT = 5050;
+const PORT = 8080;
 
 beforeAll(async () => {
   console.log('Running server tests');
+  server.listen(PORT);
 });
 
 afterAll(async () => {
-  server.close();
+  //server.close();
 });
 
 describe('routing tests', () => {

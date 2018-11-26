@@ -5,8 +5,8 @@ const errorHandler = require('koa-better-error-handler');
 const notFound = require('koa-404-handler');
 const middleware = require('./middleware');
 const router = require('./router');
-const defaultPort = 8080;
-const port = process.env.PORT || defaultPort;
+//const defaultPort = 8080;
+//const port = process.env.PORT || defaultPort;
 
 const app = new Koa();
 
@@ -25,7 +25,6 @@ app.use(middleware.db);
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(notFound);
-const server = app.listen(port);
-console.log('Server listening on port: ', port);
 
-module.exports = server;
+module.exports = app;
+
