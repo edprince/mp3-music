@@ -22,11 +22,9 @@ app.post('/login', async(ctx) => {
     ctx.status = status.BAD_REQUEST;
     return;
   }
-  console.log('Passing email check');
   const user = ctx.request.body;
   //Get user record from db
   const dbUser = await db.checkUser(user, ctx.state.db);
-  console.log(dbUser);
   ctx.response = dbUser;
   ctx.status = status.OK;
 });

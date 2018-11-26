@@ -8,6 +8,11 @@ const dbName = 'princee3-music';
  * @param {object} user - contains email and password attributes
  */
 exports.registerUser = async(user, db) => {
+  //Check for existing users
+  const existingUser = await exports.checkUser(user, db);
+  if (existingUser.length > 0) {
+    throw new Error('Already exists');
+  };
   const hashedPassword = await hasher.hash(user.password);
   const result = await db.collection('users').insertOne({
     email: user.email,
