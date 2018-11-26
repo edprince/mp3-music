@@ -17,6 +17,20 @@ app.get('/login', ctx => {
   ctx.status = status.OK;
 });
 
+app.post('/login', async(ctx) => {
+  if (!checkForEmailAndPassword(ctx.request.body)) {
+    ctx.status = status.BAD_REQUEST;
+    return;
+  }
+  console.log('Passing email check');
+  const user = ctx.request.body;
+  //Get user record from db
+  const dbUser = await db.checkUser(user, ctx.state.db);
+  console.log(dbUser);
+  ctx.response = dbUser;
+  ctx.status = status.OK;
+});
+
 app.post('/register', async(ctx) => {
   ctx.set('Allow', 'GET, POST');
   if (!(ctx.request.body.email && ctx.request.body.password)) {
@@ -31,5 +45,10 @@ app.post('/register', async(ctx) => {
   const request = await db.registerUser(user, ctx.state.db);
   ctx.status = status.OK;
 });
+
+function checkForEmailAndPassword(user) {
+  const result = user.email && user.password ? true : false;
+  return result;
+}
 
 module.exports = app;

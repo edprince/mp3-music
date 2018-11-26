@@ -5,3 +5,15 @@ exports.db = async(ctx, next) => {
   ctx.state.db = await database.connect();
   await next();
 };
+
+/*
+exports.requiresLogin = (ctx, next) => {
+  if (ctx.request.jwt && ctx.request.session.userId) {
+    return next();
+  } else {
+    var err = new Error('You must be logged in to view this page.');
+    err.status = 401;
+    return next(err);
+  }
+}
+*/

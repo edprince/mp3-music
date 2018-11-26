@@ -8,15 +8,18 @@ const dbName = 'princee3-music';
  * @param {object} user - contains email and password attributes
  */
 exports.registerUser = async(user, db) => {
-  console.log('Registering user');
   const hashedPassword = await hasher.hash(user.password);
-  console.log(hashedPassword);
   const result = await db.collection('users').insertOne({
     email: user.email,
     pass: hashedPassword,
     admin: true
   });
   return result;
+};
+
+exports.checkUser = async(user, db) => {
+  const dbUser = await db.collection('users').find({email: user.email}).toArray();
+  return dbUser;
 };
 
 exports.connect = async() => {

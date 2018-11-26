@@ -14,27 +14,20 @@ describe('get hashes', () => {
     const hash = await hasher.hash(1);
     expect(hash).toBe(false);
   });
+});
 
-  /*
-  test('other hash', () => {
-    hasher.hash('hello', (err, hash) => {
-      expect(hash).not.toBe(undefined);
-      expect(hash).not.toBe(false);
-    });
+describe('Test login password comparison', () => {
+  test('Should match correct password', async () => {
+    const password = 'hello';
+    const hashedPassword = await hasher.hash(password);
+    const match = await hasher.comparePassword(hashedPassword, password);
+    expect(match).toBe(true);
   });
 
-  test('invalid hash', () => {
-    hasher.hash(1, (err, hash) => {
-      expect(err).not.toBe(undefined);
-      expect(hash).toBe(undefined);
-    });
+  test('Should not match incorrect password', async () => {
+    const password = 'hello';
+    const hashedPassword = await hasher.hash('hello1');
+    const match = await hasher.comparePassword(hashedPassword, password);
+    expect(match).toBe(false);
   });
-
-  test('invalid hash', () => {
-    hasher.hash('', (err, hash) => {
-      expect(err).not.toBe(undefined);
-      expect(hash).toBe(undefined);
-    });
-  });
-  */
 });

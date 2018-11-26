@@ -1,4 +1,5 @@
 const db = require('../modules/db.js');
+const hasher = require('../modules/hash.js');
 
 describe('Test registering', () => {
   test('Should fail when no user is passed', () => {
@@ -36,3 +37,10 @@ describe('Test registering', () => {
   });
   */
 });
+
+describe('Checking for valid user', () => {
+  test('invalid details', () => {
+    db.checkUser
+  });
+});
+
