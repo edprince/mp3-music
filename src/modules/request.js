@@ -11,10 +11,7 @@ const config = {
 export function register(user) {
   const urlExtension = '/register';
   return new Promise((resolve, reject) => {
-    axios.post(url + urlExtension,
-      {
-        user: user
-      },
+    axios.post(url + urlExtension, user,
       config).then(response => {
       resolve(response);
     }).catch(err => {

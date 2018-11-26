@@ -24,7 +24,6 @@ app.post('/register', async(ctx) => {
     return;
   }
   const user = ctx.request.body;
-
   if (!validate.email(user.email)) {
     ctx.status = status.BAD_REQUEST;
     return;
