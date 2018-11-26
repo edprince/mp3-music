@@ -77,6 +77,14 @@ describe('routing tests', () => {
     expect(response.status).toBe(status.BAD_REQUEST);
   });
 
+  test('POST /login send invalid details', async () => {
+    const response = await request(server).post('/login').send({
+      email: faker.internet.email(),
+      password: faker.name.findName()
+    });
+    expect(response.status).toBe(status.BAD_REQUEST);
+  });
+
   test('POST /login valid user details', async () => {
     const response = await request(server).post('/login').send(user);
     expect(response.status).toBe(status.OK);

@@ -25,7 +25,11 @@ app.post('/login', async(ctx) => {
   const user = ctx.request.body;
   //Get user record from db
   const dbUser = await db.checkUser(user, ctx.state.db);
-  ctx.response.body = dbUser;
+  if (dbUser.length > 0) {
+    ctx.response.body = dbUser;
+  } else {
+    ctx.status = status.BAD_REQUEST;
+  }
   //ctx.status = status.OK;
 });
 
