@@ -1,11 +1,12 @@
-const server = require('../server/server.js');
+const Server = require('../server/server.js');
 const router = require('../server/router.js');
 const request = require('supertest');
 const PORT = 8080;
+let server;
 
 beforeAll(async () => {
   console.log('Running server tests');
-  server.listen(PORT);
+  server = Server.listen(PORT);
 });
 
 afterAll(async () => {
