@@ -1,0 +1,15 @@
+.card {
+  background: #1d1d1d;
+}
+
+.card i.large {
+  font-size: 2em;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+
+.card:hover {
+  background: #131212;
+  cursor: pointer;
+}

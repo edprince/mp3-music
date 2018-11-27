@@ -22,7 +22,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div className='content'>
         <h1>Register</h1>
         <div className='field'>
           <div className='control'>

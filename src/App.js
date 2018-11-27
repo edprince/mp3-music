@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; //eslint-disable-line no-unused-vars
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import 'bulma/css/bulma.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 import './App.css';
 import Login from './components/Login.js';
 import Register from './components/Register.js';
@@ -12,7 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         <Menu />
-        <div className="content">
+        <div className="">
           <BrowserRouter>
             <Switch>
               <Route path='/' component={Home} exact />

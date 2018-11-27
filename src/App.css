@@ -1,10 +1,14 @@
-.App {
+body, html {
   background-color: #282c34;
-  height: 100vh;
 }
 
 .content * {
   color: whitesmoke !important;
+}
+
+.wide-content {
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .content {
@@ -34,17 +38,17 @@
   color: #61dafb;
 }
 
-.content h1 {
+.App h1 {
   color: whitesmoke;
 }
 
-.content input {
+.App input {
   background: #212121;
   border: 0;
   color: whitesmoke;
 }
 
-.content input::placeholder {
+.App input::placeholder {
   color: grey;
 }
 
@@ -55,4 +59,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.card {
+  color: whitesmoke;
+}
+
+.center {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: whitesmoke;
 }
