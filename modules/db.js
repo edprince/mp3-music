@@ -22,6 +22,11 @@ exports.registerUser = async(user, db) => {
   return result;
 };
 
+exports.getPlaylists = async(user, db) => {
+  const playlists = await db.collection('playlists').find({userId: user._id}).toArray();
+  return playlists;
+};
+
 exports.checkUserExists = async(user, db) => {
   const dbUser = await db.collection('users').find({email: user.email}).toArray();
   return dbUser;

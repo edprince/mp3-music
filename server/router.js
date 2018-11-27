@@ -10,9 +10,16 @@ app.get('/', ctx => {
   ctx.body = {message: 'Hello'};
 });
 
-app.get('/playlists', ctx => {
-  ctx.body = {message: 'playlists'};
+//Protected route
+/*
+app.get('/home', ctx => {
+  //Get user id
+  //Query db for playlists with userId
+  //Respond with array of playlists
+  //const playlists = db.getPlaylists(user, ctx.state.db);
+  //ctx.body = {message: 'playlists'};
 });
+*/
 
 app.get('/login', ctx => {
   ctx.status = status.OK;
@@ -20,30 +27,36 @@ app.get('/login', ctx => {
 
 app.post('/login', async(ctx) => {
   if (!checkForEmailAndPassword(ctx.request.body)) {
-    ctx.status = status.BAD_REQUEST;
-    return;
+    ctx.throw(status.BAD_REQUEST, 'Invalid Email Address or Password');
   }
   const user = ctx.request.body;
-  //Get user record from db
+  const dbUser = await login(user, ctx);
+  ctx.response.body = dbUser;
+  ctx.status = status.OK;
+});
+
+async function login(user, ctx) {
   const dbUser = await db.checkUserExists(user, ctx.state.db);
   if (dbUser.length > 0) {
     const passwordMatch = await hasher.comparePassword(dbUser[0].password, user.password);
-    passwordMatch ? ctx.response.body = dbUser : ctx.status = status.BAD_REQUEST;
+    if (passwordMatch) {
+      return dbUser[0];
+    } else {
+      ctx.throw(status.BAD_REQUEST, 'Passwords do not match');
+    }
   } else {
-    ctx.status = status.BAD_REQUEST;
+    ctx.throw(status.NOT_FOUND, 'User not found');
   }
-});
+}
 
 app.post('/register', async(ctx) => {
   ctx.set('Allow', 'GET, POST');
-  if (!(ctx.request.body.email && ctx.request.body.password)) {
-    ctx.status = status.BAD_REQUEST;
-    return;
+  if (!checkForEmailAndPassword(ctx.request.body)) {
+    ctx.throw(status.BAD_REQUEST, 'Invalid Email Address or Password');
   }
   const user = ctx.request.body;
   if (!validate.email(user.email)) {
-    ctx.status = status.BAD_REQUEST;
-    return;
+    ctx.throw(status.BAD_REQUEST, 'Invalid Email Address');
   }
   const request = await db.registerUser(user, ctx.state.db);
   ctx.status = status.OK;

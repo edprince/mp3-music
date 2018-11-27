@@ -5,8 +5,6 @@ const errorHandler = require('koa-better-error-handler');
 const notFound = require('koa-404-handler');
 const middleware = require('./middleware');
 const router = require('./router');
-//const defaultPort = 8080;
-//const port = process.env.PORT || defaultPort;
 
 const app = new Koa();
 
@@ -21,6 +19,7 @@ app.use( async(ctx, next) => {
   await next();
 });
 
+app.use(middleware.error);
 app.use(middleware.db);
 app.use(router.routes());
 app.use(router.allowedMethods());
