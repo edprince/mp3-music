@@ -104,4 +104,16 @@ describe('routing tests', () => {
     const response = await request(server).get('/home');
     expect(response.status).toBe(status.OK);
   });
+
+  test('POST /create no data', async() => {
+    const response = await request(server).post('/create');
+    expect(response.status).toBe(status.BAD_REQUEST);
+  });
+
+  test('POST /create good data', async() => {
+    const response = await request(server)
+      .post('/create')
+      .send({title: 'Test', photo: 'https://via.placeholder.com/300', public: false});
+    expect(response.status).toBe(status.OK);
+  });
 });

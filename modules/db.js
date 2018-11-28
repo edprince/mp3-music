@@ -24,8 +24,13 @@ exports.registerUser = async(user, db) => {
 
 exports.getPlaylists = async(db) => {
   console.log('Getting playlists');
-  const playlists = await db.collection('playlists').find({}).toArray();
+  const playlists = await db.collection('playlists').find({public: 'true'}).toArray();
   return playlists;
+};
+
+exports.savePlaylist = async(playlist, db) => {
+  const insertion = await db.collection('playlists').insertOne(playlist);
+  return insertion;
 };
 
 exports.checkUserExists = async(user, db) => {

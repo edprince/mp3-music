@@ -9,10 +9,12 @@ class CreateTile extends Component {
   render() {
     return (
       <div className='card'>
-        <div className='card-content'>
-          <i className='fa fa-plus-circle large'></i>
-          <p className='center'>Create Playlist</p>
-        </div>
+        <a href='/create'>
+          <div className='card-content'>
+            <i className='fa fa-plus-circle large'></i>
+            <p className='center'>Create Playlist</p>
+          </div>
+        </a>
       </div>
     );
   }

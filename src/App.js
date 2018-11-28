@@ -7,6 +7,7 @@ import Login from './components/Login.js';
 import Register from './components/Register.js';
 import Home from './components/Home.js';
 import Menu from './components/Menu.js';
+import CreatePlaylist from './components/CreatePlaylist.js';
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
               <Route path='/' component={Home} exact />
               <Route path='/login' component={Login} />
               <Route path='/register' component={Register} />
+              <Route path='/create' component={CreatePlaylist} />
             </Switch>
           </BrowserRouter>
         </div>

@@ -30,6 +30,15 @@ app.post('/login', async(ctx) => {
   ctx.status = status.OK;
 });
 
+app.post('/create', async(ctx) => {
+  if (!checkForPlaylistData(ctx.request.body)) {
+    ctx.throw(status.BAD_REQUEST, 'Invalid playlist data');
+  }
+  const playlist = ctx.request.body;
+  const saved = await db.savePlaylist(playlist, ctx.state.db);
+  ctx.status = status.OK;
+});
+
 async function login(user, ctx) {
   const dbUser = await db.checkUserExists(user, ctx.state.db);
   if (dbUser.length > 0) {
@@ -59,6 +68,11 @@ app.post('/register', async(ctx) => {
 
 function checkForEmailAndPassword(user) {
   const result = user.email && user.password ? true : false;
+  return result;
+}
+
+function checkForPlaylistData(playlist) {
+  const result = playlist.title && playlist.photo ? true : false;
   return result;
 }
 

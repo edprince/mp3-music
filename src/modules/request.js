@@ -51,4 +51,17 @@ export function getPlaylists() {
   });
 }
 
-
+/**
+ * Sends request to save playlist to the database
+ * @param {object} playlist - contains photo and title
+ */
+export function savePlaylist(playlist) {
+  const urlExtension = '/create';
+  return new Promise((resolve, reject) => {
+    axios.post(url + urlExtension, playlist, config).then(response => {
+      resolve(response);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+}
