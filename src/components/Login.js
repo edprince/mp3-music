@@ -8,7 +8,7 @@ class Login extends Component {
     this.loginRequest = this.loginRequest.bind(this);
     this.state = {
       errors: []
-    }
+    };
   }
 
   loginRequest() {
