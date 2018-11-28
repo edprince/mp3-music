@@ -35,6 +35,7 @@ app.post('/create', async(ctx) => {
     ctx.throw(status.BAD_REQUEST, 'Invalid playlist data');
   }
   const playlist = ctx.request.body;
+  playlist.public = "true";
   const saved = await db.savePlaylist(playlist, ctx.state.db);
   ctx.status = status.OK;
 });

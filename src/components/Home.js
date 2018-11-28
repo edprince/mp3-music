@@ -37,11 +37,11 @@ class Home extends Component {
         )}
         <div className='columns is-multiline is-mobile'>
           {this.state.playlists.map(playlist =>
-            <div className='column is-2-desktop is-6-mobile'>
+            <div className='column is-3-tablet is-2-desktop is-6-mobile'>
               <MusicTile title={playlist.title} photo={playlist.photo} />
             </div>
           )}
-          <div className='column is-2-desktop is-6-mobile'>
+          <div className='column is-3-tablet is-2-desktop is-6-mobile'>
             <CreateTile />
           </div>
         </div>
