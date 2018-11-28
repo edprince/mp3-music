@@ -1,20 +1,23 @@
 import React, { Component } from 'react'; //eslint-disable-line no-unused-vars
+import ErrorMessage from './ErrorMessage.js';
 import * as Request from '../modules/request.js';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.loginRequest = this.loginRequest.bind(this);
+    this.state = {
+      errors: []
+    }
   }
 
   loginRequest() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     Request.login({email, password}).then(response => {
-      console.log('Logged in');
       window.location.href='/';
     }).catch(err => {
-      console.log('Error logging in: ', err);
+      this.setState({errors: [{message: 'Login failed'}] });
     });
   }
 
@@ -22,6 +25,9 @@ class Login extends Component {
     return (
       <div className='content'>
         <h1>Login</h1>
+        {this.state.errors.map(error =>
+          <ErrorMessage error={error.message} />
+        )}
         <div className='field'>
           <div className='control'>
             <input id='email' className='input' type='email' placeholder='Email'/>

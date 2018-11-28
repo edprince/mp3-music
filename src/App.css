@@ -3,7 +3,7 @@ body, html {
 }
 
 .content * {
-  color: whitesmoke !important;
+  color: whitesmoke;
 }
 
 .wide-content {

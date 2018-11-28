@@ -30,10 +30,8 @@ export function login(user) {
   return new Promise((resolve, reject) => {
     axios.post(url + urlExtension, user, config)
       .then(response => {
-        console.log(response);
         resolve(response);
       }).catch(err => {
-        console.log(err);
         reject(err);
       });
   });

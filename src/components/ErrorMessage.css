@@ -1,3 +1,11 @@
+.message {
+  text-align: left;
+}
+
 .message.is-danger {
   background: #ffa7b9;
+}
+
+.message.is-danger .message-body * {
+  color: #cd0930;
 }
