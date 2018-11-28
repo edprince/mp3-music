@@ -101,6 +101,7 @@ describe('routing tests', () => {
   });
 
   test('GET /home', async() => {
-
+    const response = await request(server).get('/home');
+    expect(response.status).toBe(status.OK);
   });
 });

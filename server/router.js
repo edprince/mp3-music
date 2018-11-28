@@ -11,15 +11,10 @@ app.get('/', ctx => {
 });
 
 //Protected route
-/*
-app.get('/home', ctx => {
-  //Get user id
-  //Query db for playlists with userId
-  //Respond with array of playlists
-  //const playlists = db.getPlaylists(user, ctx.state.db);
-  //ctx.body = {message: 'playlists'};
+app.get('/home', async ctx => {
+  const playlists = await db.getPlaylists(ctx.state.db);
+  ctx.body = {response: playlists};
 });
-*/
 
 app.get('/login', ctx => {
   ctx.status = status.OK;

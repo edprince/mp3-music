@@ -12,12 +12,11 @@ class MusicTile extends Component {
         <a href='/playlist'>
           <div className='card-image'>
             <figure className='image is-4by4'>
-              <img src='https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/Led_Zeppelin_-_Mothership.jpg/220px-Led_Zeppelin_-_Mothership.jpg' alt='Placeholder image'/>
+              <img src={this.props.photo} alt='Placeholder image'/>
             </figure>
           </div>
           <div className='card-content'>
-            <span className='has-text-weight-bold'>My Playlist Name</span>
-            <p>14 Songs</p>
+            <span className='has-text-weight-bold'>{this.props.title}</span>
           </div>
         </a>
       </div>

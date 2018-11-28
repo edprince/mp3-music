@@ -39,4 +39,18 @@ export function login(user) {
   });
 }
 
+/**
+ * Send request to server to get playlists
+ */
+export function getPlaylists() {
+  const urlExtension = '/home';
+  return new Promise((resolve, reject) => {
+    axios.get(url + urlExtension).then(response => {
+      resolve(response);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+}
+
 

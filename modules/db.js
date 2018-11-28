@@ -22,8 +22,9 @@ exports.registerUser = async(user, db) => {
   return result;
 };
 
-exports.getPlaylists = async(user, db) => {
-  const playlists = await db.collection('playlists').find({userId: user._id}).toArray();
+exports.getPlaylists = async(db) => {
+  console.log('Getting playlists');
+  const playlists = await db.collection('playlists').find({}).toArray();
   return playlists;
 };
 
