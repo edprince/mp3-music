@@ -40,7 +40,7 @@ export function login(user) {
 /**
  * Send request to server to get playlists
  */
-export function getPlaylists() {
+export function getAllPlaylists() {
   const urlExtension = '/home';
   return new Promise((resolve, reject) => {
     axios.get(url + urlExtension).then(response => {
@@ -49,6 +49,25 @@ export function getPlaylists() {
       reject(err);
     });
   });
+}
+
+/**
+ * Send request for specific playlist data
+ * @param {string} id - id of requested playlist
+ */
+export function getPlaylist(id) {
+  console.log(id);
+  const urlExtension = '/playlist/' + id;
+  console.log(url + urlExtension);
+  return new Promise((resolve, reject) => {
+    axios.get(url + urlExtension).then(response => {
+      console.log(response);
+      resolve(response);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+
 }
 
 /**

@@ -14,7 +14,7 @@ class CreatePlaylist extends Component {
   savePlaylist() {
     const title = document.getElementById('title').value;
     const photo = document.getElementById('photo').value;
-    Request.savePlaylist({title, photo}).then(response => {
+    Request.savePlaylist({title, photo, public: 'true'}).then(response => {
       window.location.href='/';
     }).catch(err => {
       this.setState({errors: [{message: 'Login failed'}] });

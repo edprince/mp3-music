@@ -12,7 +12,7 @@ app.get('/', ctx => {
 
 //Protected route
 app.get('/home', async ctx => {
-  const playlists = await db.getPlaylists(ctx.state.db);
+  const playlists = await db.getAllPlaylists(ctx.state.db);
   ctx.body = {response: playlists};
 });
 
@@ -35,8 +35,14 @@ app.post('/create', async(ctx) => {
     ctx.throw(status.BAD_REQUEST, 'Invalid playlist data');
   }
   const playlist = ctx.request.body;
-  playlist.public = "true";
   const saved = await db.savePlaylist(playlist, ctx.state.db);
+  ctx.status = status.OK;
+});
+
+app.get('/playlist/:id', async(ctx) => {
+  const id = ctx.params.id;
+  const playlist = await db.getPlaylist(id, ctx.state.db);
+  ctx.response.body = playlist;
   ctx.status = status.OK;
 });
 

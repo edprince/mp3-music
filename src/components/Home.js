@@ -17,10 +17,8 @@ class Home extends Component {
   }
 
   requestPlaylists() {
-    Request.getPlaylists().then(response => {
+    Request.getAllPlaylists().then(response => {
       this.setState({playlists: response.data.response});
-      console.log(this.state.playlists);
-      console.log(this.state.errors);
     }).catch(err => {
       this.setState({errors: [...this.state.errors, {message: err}]});
     });
@@ -38,7 +36,7 @@ class Home extends Component {
         <div className='columns is-multiline is-mobile'>
           {this.state.playlists.map(playlist =>
             <div className='column is-3-tablet is-2-desktop is-6-mobile'>
-              <MusicTile title={playlist.title} photo={playlist.photo} />
+              <MusicTile id={playlist._id} title={playlist.title} photo={playlist.photo} />
             </div>
           )}
           <div className='column is-3-tablet is-2-desktop is-6-mobile'>

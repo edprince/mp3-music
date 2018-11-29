@@ -105,6 +105,16 @@ describe('routing tests', () => {
     expect(response.status).toBe(status.OK);
   });
 
+  test('GET /playlist', async() => {
+    const response = await request(server).get('/playlist');
+    expect(response.status).toBe(status.NOT_FOUND);
+  });
+
+  test('GET /playlist', async() => {
+    const response = await request(server).get('/playlist/5bfe8843dfa845185762dbb5');
+    expect(response.status).toBe(status.OK);
+  });
+
   test('POST /create no data', async() => {
     const response = await request(server).post('/create');
     expect(response.status).toBe(status.BAD_REQUEST);

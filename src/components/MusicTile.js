@@ -9,7 +9,7 @@ class MusicTile extends Component {
   render() {
     return (
       <div className='card'>
-        <a href='/playlist'>
+        <a href={'/playlist/' + this.props.id}>
           <div className='card-image'>
             <figure className='image is-4by4'>
               <img src={this.props.photo} alt='Placeholder image'/>

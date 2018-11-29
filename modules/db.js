@@ -1,5 +1,6 @@
 const hasher = require('./hash.js');
-const MongoClient = require('mongodb').MongoClient;
+const Mongo = require('mongodb');
+const MongoClient = Mongo.MongoClient;
 const url = 'mongodb://test:testpass1@ds115434.mlab.com:15434/princee3-music';
 const dbName = 'princee3-music';
 
@@ -22,10 +23,15 @@ exports.registerUser = async(user, db) => {
   return result;
 };
 
-exports.getPlaylists = async(db) => {
-  console.log('Getting playlists');
+exports.getAllPlaylists = async(db) => {
   const playlists = await db.collection('playlists').find({public: 'true'}).toArray();
   return playlists;
+};
+
+exports.getPlaylist = async(id, db) => {
+  const oid = new Mongo.ObjectID(id);
+  const playlist = await db.collection('playlists').find({'_id': oid}).toArray();
+  return playlist;
 };
 
 exports.savePlaylist = async(playlist, db) => {
