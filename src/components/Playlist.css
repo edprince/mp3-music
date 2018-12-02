@@ -1,0 +1,13 @@
+.file-label {
+  margin: 0 auto;
+}
+
+.filepond--wrapper label, .filepond--wrapper span {
+  color: black;
+}
+
+.songlist {
+  text-align: left;
+  border-top: solid 2px #4e4e4e;
+  padding-top: 1em;
+}

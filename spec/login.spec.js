@@ -40,9 +40,8 @@ describe('Login Form', () => {
   test('login click without details keeps user on page', async done => {
     await page.goto('http://localhost:3000/login', { waitUntil: 'domcontentloaded' });
     await page.click('#login-btn');
-    await page.waitFor(500);
+    await page.waitFor(1000);
     expect(page.url()).toBe('http://localhost:3000/login');
     done();
   });
 });
-

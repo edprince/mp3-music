@@ -61,7 +61,6 @@ export function getPlaylist(id) {
   console.log(url + urlExtension);
   return new Promise((resolve, reject) => {
     axios.get(url + urlExtension).then(response => {
-      console.log(response);
       resolve(response);
     }).catch(err => {
       reject(err);
