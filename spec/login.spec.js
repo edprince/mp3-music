@@ -34,14 +34,18 @@ describe('Login Form', () => {
     await page.click('#register-btn');
     await page.waitFor(1000);
     expect(page.url()).toBe('http://localhost:3000/register');
+    await browser.close();
     done();
   }, timeout);
 
+  /*
   test('login click without details keeps user on page', async done => {
     await page.goto('http://localhost:3000/login', { waitUntil: 'domcontentloaded' });
     await page.click('#login-btn');
     await page.waitFor(1000);
     expect(page.url()).toBe('http://localhost:3000/login');
+    await browser.close();
     done();
-  });
+  }, timeout);
+  */
 });
