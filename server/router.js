@@ -37,11 +37,14 @@ app.post('/login', async(ctx) => {
   ctx.status = status.OK;
 });
 
-app.post('/create', async(ctx) => {
+app.post('/create/:id', async(ctx) => {
+  const id = ctx.params.id;
   if (!checkForPlaylistData(ctx.request.body)) {
     ctx.throw(status.BAD_REQUEST, 'Invalid playlist data');
   }
   const playlist = ctx.request.body;
+  playlist.userId = id;
+  playlist.songs = [];
   const saved = await db.savePlaylist(playlist, ctx.state.db);
   ctx.status = status.OK;
 });

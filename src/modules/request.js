@@ -57,7 +57,6 @@ export function getAllPlaylists() {
  * @param {string} id - id of requested playlist
  */
 export function getPlaylist(id) {
-  console.log(id);
   const urlExtension = '/playlist/' + id;
   console.log(url + urlExtension);
   return new Promise((resolve, reject) => {
@@ -75,7 +74,8 @@ export function getPlaylist(id) {
  * @param {object} playlist - contains photo and title
  */
 export function savePlaylist(playlist) {
-  const urlExtension = '/create';
+  const id = getUserId();
+  const urlExtension = '/create/' + id;
   return new Promise((resolve, reject) => {
     axios.post(url + urlExtension, playlist, config).then(response => {
       resolve(response);
