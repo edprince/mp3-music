@@ -57,7 +57,6 @@ describe('routing tests', () => {
         email: faker.name.findName(),
         password: 'pass'
       });
-    console.log(response.body);
     expect(response.status).toBe(status.BAD_REQUEST);
   });
 
