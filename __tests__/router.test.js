@@ -4,6 +4,7 @@ const request = require('supertest');
 const status = require('http-status-codes');
 const faker = require('faker');
 const PORT = 8080;
+const id = '5bfc382b8bd7f145fbc14a6b';
 const user = {email: faker.internet.email(), password: 'pass'};
 let server;
 
@@ -25,13 +26,15 @@ describe('routing tests', () => {
     expect(response.status).toEqual(status.OK);
   });
 
-  /*
-  test('get playlist route GET /playlists', async () => {
-    expect.assertions(1);
-    const response = await request(server).get('/playlists');
+  test('get home without id GET /home', async () => {
+    const response = await request(server).get('/home');
+    expect(response.status).toEqual(status.BAD_REQUEST);
+  });
+
+  test('get home with id GET /home', async () => {
+    const response = await request(server).get('/home/' + id);
     expect(response.status).toEqual(status.OK);
   });
-  */
 
   test('POST /register', async () => {
     const response = await request(server).post('/register');
@@ -100,10 +103,6 @@ describe('routing tests', () => {
     expect(response.status).toBe(status.OK);
   });
 
-  test('GET /home', async() => {
-    const response = await request(server).get('/home');
-    expect(response.status).toBe(status.OK);
-  });
 
   test('GET /playlist', async() => {
     const response = await request(server).get('/playlist');

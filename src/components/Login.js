@@ -15,6 +15,7 @@ class Login extends Component {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     Request.login({email, password}).then(response => {
+      localStorage.setItem('userId', response.data._id);
       window.location.href='/';
     }).catch(err => {
       this.setState({errors: [{message: 'Login failed'}] });
