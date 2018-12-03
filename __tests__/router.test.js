@@ -28,7 +28,7 @@ describe('routing tests', () => {
 
   test('get home without id GET /home', async () => {
     const response = await request(server).get('/home');
-    expect(response.status).toEqual(status.BAD_REQUEST);
+    expect(response.status).toEqual(status.NOT_FOUND);
   });
 
   test('get home with id GET /home', async () => {

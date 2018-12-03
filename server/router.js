@@ -12,6 +12,7 @@ app.get('/', ctx => {
 
 //Protected route
 app.get('/home/:id', async ctx => {
+  console.log(ctx.params.id);
   let id;
   if (ctx.params.id) {
     id = ctx.params.id;
