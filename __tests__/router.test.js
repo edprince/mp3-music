@@ -122,7 +122,7 @@ describe('routing tests', () => {
   test('POST /create good data', async() => {
     const response = await request(server)
       .post('/create')
-      .send({title: 'Test', photo: 'https://via.placeholder.com/300', public: false});
+      .send({title: 'Test', photo: 'https://via.placeholder.com/300', public: false, id: id});
     expect(response.status).toBe(status.OK);
   });
 });

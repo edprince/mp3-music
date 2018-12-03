@@ -12,13 +12,7 @@ app.get('/', ctx => {
 
 //Protected route
 app.get('/home/:id', async ctx => {
-  console.log(ctx.params.id);
-  let id;
-  if (ctx.params.id) {
-    id = ctx.params.id;
-  } else {
-    ctx.throw(status.BAD_REQUEST, 'Not logged in');
-  }
+  const id = ctx.params.id;
   const playlists = await db.getAllPlaylists(id, ctx.state.db);
   ctx.body = {response: playlists};
 });
@@ -37,13 +31,11 @@ app.post('/login', async(ctx) => {
   ctx.status = status.OK;
 });
 
-app.post('/create/:id', async(ctx) => {
-  const id = ctx.params.id;
+app.post('/create/', async(ctx) => {
   if (!checkForPlaylistData(ctx.request.body)) {
     ctx.throw(status.BAD_REQUEST, 'Invalid playlist data');
   }
   const playlist = ctx.request.body;
-  playlist.userId = id;
   playlist.songs = [];
   const saved = await db.savePlaylist(playlist, ctx.state.db);
   ctx.status = status.OK;
