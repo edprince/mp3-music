@@ -41,7 +41,7 @@ export function login(user) {
  * Send request to server to get playlists
  */
 export function getAllPlaylists() {
-  const id =  getUserId();
+  const id = getUserId();
   const urlExtension = '/home/' + id;
   return new Promise((resolve, reject) => {
     axios.get(url + urlExtension).then(response => {

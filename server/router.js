@@ -12,13 +12,7 @@ app.get('/', ctx => {
 
 //Protected route
 app.get('/home/:id', async ctx => {
-  console.log(ctx.params.id);
-  let id;
-  if (ctx.params.id) {
-    id = ctx.params.id;
-  } else {
-    ctx.throw(status.BAD_REQUEST, 'Not logged in');
-  }
+  const id = ctx.params.id;
   const playlists = await db.getAllPlaylists(id, ctx.state.db);
   ctx.body = {response: playlists};
 });
