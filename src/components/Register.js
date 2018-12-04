@@ -41,7 +41,7 @@ class Register extends Component {
             </button>
           </p>
           <p className='control'>
-            <a className='button is-dark' href='/login'>Back to Login</a>
+            <a className='button is-dark' id='login-btn' href='/login'>Back to Login</a>
           </p>
         </div>
       </div>

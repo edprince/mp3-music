@@ -1,8 +1,10 @@
-//const faker = require('faker');
+//const faker = require('faker');
 const puppeteer = require('puppeteer');
-const timeout = 16000;
+//const config = require('./config');
+
 let page;
 let browser;
+const timeout = 16000;
 const width = 800;
 const height = 600;
 const browserConfig = {
@@ -11,8 +13,7 @@ const browserConfig = {
   args: [`--window-size=${width},${height}`, '--disable-http2']
 }
 
-
-describe('Login page', () => {
+describe('Register page', () => {
   beforeEach (async () => {
     browser = await puppeteer.launch(browserConfig);
     page = await browser.newPage();
@@ -23,16 +24,6 @@ describe('Login page', () => {
     browser.close();
   });
    
-	test('Test login loads', async done => {
-		await page.waitFor(1000);
-		await page.tracing.start({path: 'trace.json'});
-		await page.goto('http://localhost:3000/login', { waitUntil: 'domcontentloaded' });
-		const title = await page.title();
-		expect(title).toBe('React App');
-		await page.tracing.stop();
-		done();
-	}, timeout);
-
 	test('Register loads', async done => {
 		await page.waitFor(1000);
 		await page.tracing.start({path: 'trace.json'});
@@ -44,20 +35,19 @@ describe('Login page', () => {
 	}, timeout);
 
   test('clicking register takes user to register page', async done => {
-    await page.goto('http://localhost:3000/login', { waitUntil: 'domcontentloaded' });
-    await page.click('#register-btn');
+    await page.goto('http://localhost:3000/register', { waitUntil: 'domcontentloaded' });
+    await page.click('#login-btn');
     await page.waitFor(1000);
-    expect(page.url()).toBe('http://localhost:3000/register');
+    expect(page.url()).toBe('http://localhost:3000/login');
     await browser.close();
     done();
   }, timeout);
 
   test('login click without details keeps user on page', async done => {
-    await page.goto('http://localhost:3000/login', { waitUntil: 'domcontentloaded' });
+    await page.goto('http://localhost:3000/register', { waitUntil: 'domcontentloaded' });
     await page.click('#login-btn');
     await page.waitFor(1000);
     expect(page.url()).toBe('http://localhost:3000/login');
-    await page.screenshot({ path: 'screenshots/page.png' })
     await browser.close();
     done();
   }, timeout);
