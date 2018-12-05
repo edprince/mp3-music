@@ -8,6 +8,8 @@
 
 # testing
 /coverage
+/screenshots
+trace.json
 
 # production
 /build
