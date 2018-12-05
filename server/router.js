@@ -21,8 +21,16 @@ app.get('/login', ctx => {
   ctx.status = status.OK;
 });
 
+app.post('/upload/:id', async ctx => {
+  const id = ctx.params.id;
+  const file = ctx.request.files.song;
+  db.uploadSong(file, id, ctx.state.db);
+  ctx.status = status.OK;
+});
+
 app.post('/login', async(ctx) => {
   if (!checkForEmailAndPassword(ctx.request.body)) {
+    console.log('Bad details');
     ctx.throw(status.BAD_REQUEST, 'Invalid Email Address or Password');
   }
   const user = ctx.request.body;
@@ -66,10 +74,12 @@ app.post('/register', async(ctx) => {
   ctx.set('Allow', 'GET, POST');
   if (!checkForEmailAndPassword(ctx.request.body)) {
     ctx.throw(status.BAD_REQUEST, 'Invalid Email Address or Password');
+    return;
   }
   const user = ctx.request.body;
   if (!validate.email(user.email)) {
     ctx.throw(status.BAD_REQUEST, 'Invalid Email Address');
+    return;
   }
   const request = await db.registerUser(user, ctx.state.db);
   ctx.status = status.OK;

@@ -41,6 +41,7 @@ describe('routing tests', () => {
     expect(response.status).toBe(status.BAD_REQUEST);
   });
 
+  /*
   test('POST /register with user email but no password', async () => {
     const response = await request(server)
       .post('/register')
@@ -79,11 +80,13 @@ describe('routing tests', () => {
     expect(response.status).toBe(status.BAD_REQUEST);
   });
 
+  */
   test('GET /login', async () => {
     const response = await request(server).get('/login');
     expect(response.status).toBe(status.OK);
   });
 
+  /*
   test('POST /login send empty object', async () => {
     const response = await request(server).post('/login').send({});
     expect(response.status).toBe(status.BAD_REQUEST);
@@ -101,6 +104,7 @@ describe('routing tests', () => {
     const response = await request(server).post('/login').send(user);
     expect(response.status).toBe(status.OK);
   });
+  */
 
 
   test('GET /playlist', async() => {

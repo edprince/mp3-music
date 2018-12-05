@@ -3,6 +3,12 @@ const url = 'http://localhost:8000';
 const config = {
   headers: {}
 };
+const audioConfig = {
+  headers: {
+    'Content-Type': 'multipart/form-data'
+  }
+};
+
 
 /**
  * Send request to server to register user
@@ -79,6 +85,27 @@ export function savePlaylist(playlist) {
   playlist.id = playlist;
   return new Promise((resolve, reject) => {
     axios.post(url + urlExtension, playlist, config).then(response => {
+      resolve(response);
+    }).catch(err => {
+      reject(err);
+    });
+  });
+}
+
+/**
+ * Send song file to server
+ * @param {file} song - the user's uploaded file to add to playlist
+ */
+export function postSong(song, id) {
+  const urlExtension = '/upload/' + id;
+  const bodyFormData = new FormData();
+  bodyFormData.append('song', song);
+  return new Promise((resolve, reject) => {
+    axios.post(
+      url + urlExtension,
+      bodyFormData,
+      audioConfig
+    ).then(response => {
       resolve(response);
     }).catch(err => {
       reject(err);
