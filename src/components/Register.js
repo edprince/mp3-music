@@ -14,7 +14,7 @@ class Register extends Component {
     //Make request with user details
     Request.register({email, password}).then(response => {
       console.log('User created: ', response.message);
-      window.location.href = '/';
+      window.location.href = '/login';
     }).catch(err => {
       console.error('Error: ', err);
     });
