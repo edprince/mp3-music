@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LoginButton from './LoginButton.js';
-import LogoutButton from "./LogoutButton.js";
+import LogoutButton from './LogoutButton.js';
 import './Menu.css';
 
 class Menu extends Component {
@@ -61,7 +61,7 @@ class Menu extends Component {
             </a>
             <div className="navbar-item">
               <div className="buttons">
-                {localStorage.getItem("userId") ? <LogoutButton /> : <LoginButton />}
+                {localStorage.getItem('userId') ? <LogoutButton /> : <LoginButton />}
               </div>
             </div>
           </div>
