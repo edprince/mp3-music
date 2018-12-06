@@ -18,6 +18,7 @@ class Login extends Component {
       localStorage.setItem('userId', response.data._id);
       window.location.href='/';
     }).catch(err => {
+      console.error(err);
       this.setState({errors: [{message: 'Login failed'}] });
     });
   }

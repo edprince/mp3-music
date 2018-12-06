@@ -8,14 +8,15 @@ const router = require('./router');
 
 const app = new Koa();
 
-app.use(bodyParser());
+app.use(bodyParser({
+  formLimit: '5mb'
+}));
 app.context.onerror = errorHandler;
 
 app.use(cors());
 app.use( async(ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', '*');
   ctx.set('content-type', 'application/json');
-  // Use connect method to connect to the server
   await next();
 });
 
