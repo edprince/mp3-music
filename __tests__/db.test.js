@@ -57,7 +57,7 @@ describe('Uploads', () => {
       name: 'test'
     }
     let response = await db.uploadSong(song, playlistId, connect);
-    expect(response.url).not.toBe(undefined);
+    expect(response).not.toBe(undefined);
   });
 });
 

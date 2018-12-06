@@ -43,7 +43,7 @@ exports.uploadSong = async(file) => new Promise((resolve, reject) => {
   };
   s3.upload(options, (err, data) => {
     if (err) reject(err);
-    resolve({url: data.Location});
+    resolve(data.Location);
   });
 });
 

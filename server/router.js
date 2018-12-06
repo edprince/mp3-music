@@ -23,6 +23,7 @@ app.get('/login', ctx => {
 
 app.post('/upload/:id', async ctx => {
   const id = ctx.params.id;
+  console.log(ctx.request.files);
   if (!(ctx.request.files && ctx.request.files.song)) {
     ctx.throw(status.BAD_REQUEST, 'No song');
   }
