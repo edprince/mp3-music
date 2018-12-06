@@ -1,5 +1,4 @@
 const Koa = require('koa');
-//const bodyParser = require('koa-bodyparser');
 const koaBody = require('koa-body');
 const cors = require('@koa/cors');
 const errorHandler = require('koa-better-error-handler');
@@ -9,12 +8,6 @@ const router = require('./router');
 
 const app = new Koa();
 
-/*
-app.use(bodyParser({
-  enableTypes: ['json', 'form'],
-  formLimit: '5mb'
-}));
-*/
 app.use(koaBody({ multipart: true }));
 app.context.onerror = errorHandler;
 

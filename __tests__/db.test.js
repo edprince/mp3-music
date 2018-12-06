@@ -1,4 +1,4 @@
-const db = require('../modules/db.js');
+const db = require('../persistence/db.js');
 const hasher = require('../modules/hash.js');
 const playlistId = '5c03ec2a84d56909315c0250';
 const faker = require('faker'); 

@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const status = require('http-status-codes');
-const db = require('../modules/db.js');
+const db = require('../persistence/db.js');
 const validate = require('../modules/validate.js');
 const hasher = require('../modules/hash.js');
 

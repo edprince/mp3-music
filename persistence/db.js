@@ -1,4 +1,4 @@
-const hasher = require('./hash.js');
+const hasher = require('../modules/hash.js');
 const AWS = require('aws-sdk');
 const Endpoint = 'sfo2.digitaloceanspaces.com';
 const ACCESS_KEY = 'UY4UZXSGOTVEUWCEFKTH';

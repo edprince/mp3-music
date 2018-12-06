@@ -1,4 +1,4 @@
-const database = require('../modules/db.js');
+const database = require('../persistence/db.js');
 const DEFAULT_ERROR_PORT = 500;
 
 exports.db = async(ctx, next) => {
