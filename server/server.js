@@ -1,6 +1,6 @@
 const Koa = require('koa');
 //const bodyParser = require('koa-bodyparser');
-const koaBody = require('koa-body')
+const koaBody = require('koa-body');
 const cors = require('@koa/cors');
 const errorHandler = require('koa-better-error-handler');
 const notFound = require('koa-404-handler');
