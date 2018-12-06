@@ -3,8 +3,10 @@ const router = require('../server/router.js');
 const request = require('supertest');
 const status = require('http-status-codes');
 const faker = require('faker');
+const fs = require('fs');
 const PORT = 8080;
 const id = '5bfc382b8bd7f145fbc14a6b';
+const playlistId = '5bfe8843dfa845185762dbb5';
 const user = {email: faker.internet.email(), password: 'pass'};
 let server;
 
@@ -41,7 +43,6 @@ describe('routing tests', () => {
     expect(response.status).toBe(status.BAD_REQUEST);
   });
 
-  /*
   test('POST /register with user email but no password', async () => {
     const response = await request(server)
       .post('/register')
@@ -80,13 +81,11 @@ describe('routing tests', () => {
     expect(response.status).toBe(status.BAD_REQUEST);
   });
 
-  */
   test('GET /login', async () => {
     const response = await request(server).get('/login');
     expect(response.status).toBe(status.OK);
   });
 
-  /*
   test('POST /login send empty object', async () => {
     const response = await request(server).post('/login').send({});
     expect(response.status).toBe(status.BAD_REQUEST);
@@ -104,7 +103,6 @@ describe('routing tests', () => {
     const response = await request(server).post('/login').send(user);
     expect(response.status).toBe(status.OK);
   });
-  */
 
 
   test('GET /playlist', async() => {
@@ -113,7 +111,7 @@ describe('routing tests', () => {
   });
 
   test('GET /playlist', async() => {
-    const response = await request(server).get('/playlist/5bfe8843dfa845185762dbb5');
+    const response = await request(server).get('/playlist/' + playlistId);
     expect(response.status).toBe(status.OK);
   });
 
@@ -128,4 +126,25 @@ describe('routing tests', () => {
       .send({title: 'Test', photo: 'https://via.placeholder.com/300', public: false, id: id});
     expect(response.status).toBe(status.OK);
   });
+
+  test('POST /upload no id', async () => {
+    const response = await request(server).post('/upload');
+    expect(response.status).toBe(status.NOT_FOUND);
+  });
+
+  test('POST /upload with id no file', async () => {
+    const response = await request(server).post('/upload/' + playlistId);
+    expect(response.status).toBe(status.BAD_REQUEST);
+  });
+
+  /*
+  test('POST /upload with id and file', async () => {
+    const song = fs.createReadStream('./test.mp3');
+    console.log(song);
+    const response = await request(server)
+      .post('/upload/' + playlistId)
+      .send(song);
+    expect(response.status).toBe(status.OK);
+  });
+  */
 });

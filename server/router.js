@@ -23,8 +23,17 @@ app.get('/login', ctx => {
 
 app.post('/upload/:id', async ctx => {
   const id = ctx.params.id;
+  if (!(ctx.request.files && ctx.request.files.song)) {
+    ctx.throw(status.BAD_REQUEST, 'No song');
+  }
   const file = ctx.request.files.song;
-  db.uploadSong(file, id, ctx.state.db);
+  db.uploadSong(file).then(response => {
+    db.updatePlaylistWithSong(response, id, ctx.state.db);
+  }).catch(err => {
+    ctx.throw(status.BAD_REQUEST, 'Could not add song to db' + err);
+  }).catch(err => {
+    ctx.throw(status.BAD_REQUEST, 'Could not upload song' + err);
+  });
   ctx.status = status.OK;
 });
 
@@ -45,7 +54,7 @@ app.post('/create/', async(ctx) => {
   }
   const playlist = ctx.request.body;
   playlist.songs = [];
-  const saved = await db.savePlaylist(playlist, ctx.state.db);
+  await db.savePlaylist(playlist, ctx.state.db);
   ctx.status = status.OK;
 });
 
@@ -74,14 +83,12 @@ app.post('/register', async(ctx) => {
   ctx.set('Allow', 'GET, POST');
   if (!checkForEmailAndPassword(ctx.request.body)) {
     ctx.throw(status.BAD_REQUEST, 'Invalid Email Address or Password');
-    return;
   }
   const user = ctx.request.body;
   if (!validate.email(user.email)) {
     ctx.throw(status.BAD_REQUEST, 'Invalid Email Address');
-    return;
   }
-  const request = await db.registerUser(user, ctx.state.db);
+  await db.registerUser(user, ctx.state.db);
   ctx.status = status.OK;
 });
 

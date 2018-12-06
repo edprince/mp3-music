@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; //eslint-disable-line no-unused-vars
-import Sound from 'react-sound';
 import './Audio.css';
 const url = 'https://princee3-music.sfo2.digitaloceanspaces.com/';
 const TITLE_LENGTH = 15;
@@ -11,6 +10,7 @@ class Audio extends Component {
     //this.props.url = urlArr[urlArr.length - 1];
   }
   //sfo2.digitaloceanspaces.com/princee3-music/Deadmau5_-_gg-JAB1rxKlTcU.mp3'
+  /*
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.url !== this.state.url) {
@@ -24,6 +24,7 @@ class Audio extends Component {
     this.refs.audio.play();
     //<Sound url={this.props.url} />
   }
+  */
 
   render() {
     const urlArr = this.props.url.split('/');

@@ -83,6 +83,7 @@ export function savePlaylist(playlist) {
   const id = getUserId();
   const urlExtension = '/create/';
   playlist.id = playlist;
+  playlist.userId = id;
   return new Promise((resolve, reject) => {
     axios.post(url + urlExtension, playlist, config).then(response => {
       resolve(response);

@@ -1,5 +1,4 @@
 const Koa = require('koa');
-const koaBody = require('koa-body');
 const bodyParser = require('koa-bodyparser');
 const cors = require('@koa/cors');
 const errorHandler = require('koa-better-error-handler');
@@ -23,9 +22,6 @@ app.use( async(ctx, next) => {
 
 app.use(middleware.error);
 app.use(middleware.db);
-app.use(koaBody({
-  multipart: true
-}));
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(notFound);
