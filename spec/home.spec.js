@@ -1,9 +1,11 @@
 const fakeer = require('faker');
 const puppeteer = require('puppeteer');
+const server = require('../server/server.js');
 const timeout = 16000;
 const url = 'http://localhost:3000/';
 let page;
 let browser;
+const PORT = 8000;
 const width = 800;
 const height = 600;
 const browserConfig = {
@@ -12,6 +14,9 @@ const browserConfig = {
   args: [`--window-size=${width},${height}`, '--disable-http2']
 }
 
+beforeAll(async () => {
+  server.listen(PORT);
+});
 
 describe('Login page', () => {
   beforeEach (async () => {
