@@ -7,6 +7,7 @@ const fakeUser = {
   password: 'pass'
 }
 let connect;
+jest.mock('../persistence/db.js');
 
 beforeAll(async () => {
   connect = await db.connect(); 

@@ -12,7 +12,6 @@ let server;
 
 
 beforeAll(async () => {
-  console.log('Running server tests');
   server = Server.listen(PORT);
 });
 
