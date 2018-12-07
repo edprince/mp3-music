@@ -20,7 +20,7 @@ class Home extends Component {
     Request.getAllPlaylists().then(response => {
       this.setState({playlists: response.data.response});
     }).catch(err => {
-      this.setState({errors: [...this.state.errors, {message: err}]});
+      this.setState({errors: [...this.state.errors, {message: err.message}]});
     });
   }
 

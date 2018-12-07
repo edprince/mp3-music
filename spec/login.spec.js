@@ -1,6 +1,10 @@
-//const faker = require('faker');
+const fakeer = require('faker');
 const puppeteer = require('puppeteer');
 const timeout = 16000;
+const validUser = {
+  email: 'edward_prince@hotmail.com',
+  password: 'pass'
+}
 let page;
 let browser;
 const width = 800;
@@ -48,7 +52,6 @@ describe('Login page', () => {
     await page.click('#register-btn');
     await page.waitFor(1000);
     expect(page.url()).toBe('http://localhost:3000/register');
-    await browser.close();
     done();
   }, timeout);
 
@@ -58,6 +61,19 @@ describe('Login page', () => {
     await page.waitFor(1000);
     expect(page.url()).toBe('http://localhost:3000/login');
     await page.screenshot({ path: 'screenshots/page.png' })
+    done();
+  }, timeout);
+
+  test('login with good details', async done => {
+    await page.goto('http://localhost:3000/login', { waitUntil: 'domcontentloaded' });
+    await page.click('#email');
+    await page.type('#email', validUser.email);
+    await page.click('#password');
+    await page.type('#password', validUser.password);
+    await page.click('#login-btn');
+    await page.waitFor(1000);
+    expect(page.url()).toBe('http://localhost:3000/');
+    await page.screenshot({path: 'screenshots/login.png'});
     await browser.close();
     done();
   }, timeout);

@@ -36,7 +36,7 @@ class Register extends Component {
         </div>
         <div className="field is-grouped">
           <p className="control">
-            <button onClick={this.register} className="button is-primary">
+            <button id='register-btn' onClick={this.register} className="button is-primary">
               Register
             </button>
           </p>

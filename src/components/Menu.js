@@ -34,6 +34,7 @@ class Menu extends Component {
             Music
           </a>
           <button
+            id="burger"
             className="navbar-burger burger"
             aria-label="menu"
             aria-expanded="false"
@@ -52,11 +53,7 @@ class Menu extends Component {
             <a href="/" className="navbar-item">
               Home
             </a>
-
-            <a href="/profile" className="navbar-item">
-              Playlists
-            </a>
-            <a href="/create" className="navbar-item">
+            <a id='create-btn' href="/create" className="navbar-item">
               Create Playlist
             </a>
             <div className="navbar-item">

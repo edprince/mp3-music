@@ -1,4 +1,4 @@
-//const faker = require('faker');
+const faker = require('faker');
 const puppeteer = require('puppeteer');
 //const config = require('./config');
 
@@ -43,9 +43,22 @@ describe('Register page', () => {
     done();
   }, timeout);
 
-  test('login click without details keeps user on page', async done => {
+  test('register click without details keeps user on page', async done => {
     await page.goto('http://localhost:3000/register', { waitUntil: 'domcontentloaded' });
     await page.click('#login-btn');
+    await page.waitFor(1000);
+    expect(page.url()).toBe('http://localhost:3000/login');
+    await browser.close();
+    done();
+  }, timeout);
+
+  test('register with good details', async done => {
+    await page.goto('http://localhost:3000/register', { waitUntil: 'domcontentloaded' });
+    await page.click('#email');
+    await page.type('#email', faker.internet.email());
+    await page.click('#password');
+    await page.type('#password', faker.internet.password());
+    await page.click('#register-btn');
     await page.waitFor(1000);
     expect(page.url()).toBe('http://localhost:3000/login');
     await browser.close();
